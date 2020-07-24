@@ -1,7 +1,10 @@
 import requests, os, zipfile, shutil, datetime
 import pandas as pd
 
-os.mkdir('Data')
+try:
+    os.mkdir('Data')
+except FileExistsError:
+    pass
 
 def download(url):
     get_response = requests.get(url,stream=True)
@@ -58,7 +61,10 @@ def main():
     time, deaths, cases = getTimeStamp(), getDeaths(), getCases()
     logAll(cases, deaths, time)
     print(printFormatted(cases, deaths, time))
-    
+
+    with open('./Present_Day_Statistics.txt', 'w') as f:
+        f.write(printFormatted('\n' + cases, '\n' + deaths, '\r' + time))
+
 
 # print('\n\n' + getCases() + getDeaths() + '\n')
 if __name__ == '__main__':
