@@ -1,6 +1,8 @@
 import requests, os, zipfile, shutil, datetime
 import pandas as pd
 
+os.mkdir('Data')
+
 def download(url):
     get_response = requests.get(url,stream=True)
     file_name  = url.split("/")[-1]
