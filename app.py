@@ -37,10 +37,10 @@ def getTimeStamp():
     return time[:-7]
 
 def getCases():
-    with open('./Data/demographics.csv', newline='') as csvfile:
+    with open('./Data/summary_totals.csv', newline='') as csvfile:
         df = pd.read_csv(csvfile)
-        thing = [i for i in df['Confirmed_Cases']]
-        return str(sum(thing))
+        thing = [i for i in df['cases']]
+        return str(thing[0])
 
 def logAll(cases, deaths, time):
     with open('./Data/GA_Total_Cases_Log.txt', 'a') as caselog:
